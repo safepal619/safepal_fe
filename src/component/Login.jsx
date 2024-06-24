@@ -23,21 +23,21 @@ const handleSubmitForm = async(e) => {
     setIsLoading(true)
     try {
      const res =   await axios.post(`${BaseUrl}/auth/login`, {email, password});
-     console.log(res.data)
+     console.log(res?.data)
 
-     if(res.data.status === "Pending") {
+     if(res?.data?.status === "Pending") {
       navigate("/confirm-signup")
      } 
 
-     if(res.data.status === "success") {
-      dispatch(login(res.data.data))
+     if(res?.data?.status === "success") {
+      dispatch(login(res?.data?.data))
       navigate("/")
      } 
 
         
     } catch (error) {
-        toast.error(error.response.data.message); 
-        // console.log(error)
+      console.log(error?.response?.data?.message)
+        toast.error(error?.response?.data?.message); 
     }
     setIsLoading(false)
 }

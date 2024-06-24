@@ -6,46 +6,23 @@ import { Banner, CryptoList } from '../component'
 import { useSelector } from 'react-redux'
 import { BaseUrl } from '../../Root'
 import axios from 'axios'
+import { getUser } from '../services/request'
 
 
 const VerifyHomepage = () => {
 
   const {user} = useSelector((state) => state.user)
  
-
-  const [crypto, setCrypto] = useState({})
-
-
-
-  useEffect(() => {
-    (async()=> {
-      const config = {
-        headers: { Authorization: `Bearer ${user.token}` }
-    };
-
-    try {
-       const res = await axios.get(`${BaseUrl}/user/accountInformation/${user._id}`, config)
-
-        // toast.success(res.data.message)
-        // console.log(res.data)
-        setCrypto(res?.data?.data)
-        
-    } catch (error) {
-        // toast.error("Failed try again.")
-        // console.log(error)
-    }
-    })()
-  },[])
-
-  console.log(crypto)
-
+  const {data, isLoading } = getUser({token: user.token , userId: user._id})
+ 
+// console.log(data?.data)
   return (
     <>
 
-    <Banner totalBalance={crypto?.totalBalance} />
+    {data?.data  && <Banner messagecount={data?.data?.message_counter_user} totalBalance={data?.data?.totalBalance} />}
     
-     {crypto && <CryptoList wallet={crypto?.wallet} liveCryptoUpdate={crypto?.liveCryptoUpdate}  />}
-     {!crypto && <Loader  />}
+     {data?.data && <CryptoList wallet={data?.data?.wallet} liveCryptoUpdate={data?.data?.liveCryptoUpdate}  />}
+     {isLoading && <Loader  />}
     </>
     
   )

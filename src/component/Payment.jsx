@@ -90,9 +90,9 @@ const Payment = () => {
 
   return (
    <>
-   <div className="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900">
+   <div className="flex items-center min-h-screen bg-gray-50 ">
        <div className="container mx-auto">
-         <div className="max-w-md mx-auto my-10 bg-white dark:bg-gray-800 p-5 rounded-md shadow-sm">
+         <div className="max-w-md mx-auto my-10 bg-gray-800 p-5 rounded-md shadow-sm">
 
          {isSuccess && <Alert
         message="Successful"
@@ -115,10 +115,10 @@ const Payment = () => {
 
 {/* title */}
            <div className="text-center">
-             <h1 className="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">
+             <h1 className="my-3 text-3xl font-semibold text-gray-200">
                All Payment method
              </h1>
-             <p className="text-gray-400 dark:text-gray-400">
+             <p className="text-gray-400">
                Save your payment method below for easy withdrawal.
              </p>
            </div>
@@ -136,35 +136,35 @@ const Payment = () => {
 
            <div className="m-7">
              <form onSubmit={handleMessage} > 
-             <div class="flex flex-wrap gap-2 my-5">
-             <div onClick={() => setbankname("")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-teal-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px flex items-center gap-1">All {bankname === "" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
+             <div className="flex flex-wrap gap-2 my-5">
+             <div onClick={() => setbankname("")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-teal-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px flex items-center gap-1">All {bankname === "" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
   </div>
 
-  <div onClick={() => setbankname("Tinkoff")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-blue-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px flex items-center gap-1">Tinkoff{bankname === "Tinkoff" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
+  <div onClick={() => setbankname("Tinkoff")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-blue-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px flex items-center gap-1">Tinkoff{bankname === "Tinkoff" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
   </div>
-  <div onClick={() => setbankname("Sberbank")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-red-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px flex items-center gap-1">Sberbank {bankname === "Sberbank" &&<div className="w-2 h-2 rounded-full bg-green-500"></div>}</div>
+  <div onClick={() => setbankname("Sberbank")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-red-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px flex items-center gap-1">Sberbank {bankname === "Sberbank" &&<div className="w-2 h-2 rounded-full bg-green-500"></div>}</div>
   </div>
-  <div onClick={() => setbankname("Raiffeisenbank")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-green-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px flex items-center gap-1">Raiffeisenbank{bankname === "Raiffeisenbank" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
+  <div onClick={() => setbankname("Raiffeisenbank")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-green-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px flex items-center gap-1">Raiffeisenbank{bankname === "Raiffeisenbank" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
   </div>
-  <div onClick={() => setbankname("Perfect money")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-amber-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-    <div class="mt-px flex items-center gap-1">Perfect money{bankname === "Perfect money" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
+  <div onClick={() => setbankname("Perfect money")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-amber-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+    <div className="mt-px flex items-center gap-1">Perfect money{bankname === "Perfect money" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
   </div>
-  <div onClick={() => setbankname("Citi bank")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-pink-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px flex items-center gap-1">Citi bank ( Russia){bankname === "Citi bank" && <div className="w-2 h-2 rounded-full bg-green-500"></div>}</div>
+  <div onClick={() => setbankname("Citi bank")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-pink-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px flex items-center gap-1">Citi bank ( Russia){bankname === "Citi bank" && <div className="w-2 h-2 rounded-full bg-green-500"></div>}</div>
   </div>
-  <div onClick={() => setbankname("Alfa Bank")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-indigo-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px flex items-center gap-1">Alfa Bank{bankname === "Alfa Bank" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
+  <div onClick={() => setbankname("Alfa Bank")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-indigo-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px flex items-center gap-1">Alfa Bank{bankname === "Alfa Bank" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
   </div>
-  <div onClick={() => setbankname("Rosbank")} class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-purple-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px flex items-center gap-1">Rosbank{bankname === "Rosbank" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
+  <div onClick={() => setbankname("Rosbank")} className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-purple-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px flex items-center gap-1">Rosbank{bankname === "Rosbank" && <div className="w-2 h-2 rounded-full bg-red-500"></div>}</div>
   </div>
   {/* 
-  <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-cyan-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
-    <div class="mt-px">cyan</div>
+  <div className="center relative inline-block select-none whitespace-nowrap rounded-lg bg-cyan-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-white">
+    <div className="mt-px">cyan</div>
   </div> */}
 </div>
 
@@ -173,7 +173,7 @@ const Payment = () => {
               <div className="mb-6">
                  <label
                    htmlFor="name"
-                   className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
+                   className="block mb-2 text-sm text-gray-400"
                  >
                    Bank Name
                  </label>
@@ -185,7 +185,7 @@ const Payment = () => {
                    id="name"
                    placeholder="Please Enter Bank Name"
                    required
-                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                   className="w-full px-3 py-2  rounded-md focus:outline-none focus:ring  bg-gray-700 text-white placeholder-gray-500 border-gray-600 focus:ring-gray-900 focus:border-gray-500"
                  />
                </div>
 
@@ -195,13 +195,13 @@ const Payment = () => {
              <div className="mb-6">
                  <label
                    htmlFor="name"
-                   className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
+                   className="block mb-2 text-sm text-gray-400"
                  >
                    Payment Type
                  </label>
 
                  <select value={paymentType}
-                 onChange={(e) => setpaymentType(e.target.value)} name="" id="" className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                 onChange={(e) => setpaymentType(e.target.value)} name="" id="" className="w-full px-3 py-2 p border rounded-md focus:outline-none focus:ring  bg-gray-700 text-white placeholder-gray-500 border-gray-600 focus:ring-gray-900 focus:border-gray-500"
 >
                     <option value="Bank Transfer">Bank Transfer</option>
                  </select>
@@ -211,7 +211,7 @@ const Payment = () => {
              <div className="mb-6">
                  <label
                    htmlFor="name"
-                   className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
+                   className="block mb-2 text-sm text-gray-400"
                  >
                    Name
                  </label>
@@ -223,7 +223,7 @@ const Payment = () => {
                    id="name"
                    placeholder="Please Enter Name"
                    required
-                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring bg-gray-700 text-white placeholder-gray-500 border-gray-600 focus:ring-gray-900 focus:border-gray-500"
                  />
                </div>
 
@@ -235,7 +235,7 @@ const Payment = () => {
                <div className="mb-6">
                  <label
                    htmlFor="account_name"
-                   className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
+                   className="block mb-2 text-sm  text-gray-400"
                  >
                    Bank Account Number
                  </label>
@@ -247,7 +247,7 @@ const Payment = () => {
                    id="account_name"
                    placeholder="Please Enter Account Number"
                    required
-                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring  bg-gray-700 text-white placeholder-gray-500 border-gray-600 focus:ring-gray-900 focus:border-gray-500"
                  />
                </div>
 
@@ -256,7 +256,7 @@ const Payment = () => {
                <div className="mb-6">
                  <label
                    htmlFor="branch"
-                   className="text-sm text-gray-600 dark:text-gray-400"
+                   className="text-sm text-gray-400"
                  >
                    Bank Branch
                  </label>
@@ -268,7 +268,7 @@ const Payment = () => {
                    id="branch"
                    placeholder="Please Enter Bank Branch"
                    required
-                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                   className="w-full px-3 py-2 border  rounded-md focus:outline-none focus:ring bg-gray-700 text-white placeholder-gray-500 border-gray-600 focus:ring-gray-900 focus:border-gray-500"
                  />
                </div>
 

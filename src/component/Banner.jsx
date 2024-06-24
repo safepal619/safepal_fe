@@ -1,14 +1,16 @@
 
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
-
-const Banner = ({totalBalance}) => {
+const Banner = ({messagecount , totalBalance}) => {
  
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
+  const {user} = useSelector((state) => state.user)
 
-
- 
+   queryClient.invalidateQueries({ queryKey: ['user'] })
 
 
   return (
@@ -19,7 +21,7 @@ const Banner = ({totalBalance}) => {
       <div className='flex text-white gap-3 justify-center h-10'>
       <button onClick={() => navigate("/sendtoken")} className=' bg-[#001529] text-center rounded min-w-14 sm:min-w-20'>Send</button>
       <button onClick={() => navigate("/recievetoken")}  className='bg-[#001529] text-center rounded min-w-14 sm:min-w-20'>Recieve</button>
-      <button onClick={() => navigate("/chat")} className=' bg-[#001529] text-center rounded min-w-14 sm:min-w-20'>Chat</button>
+      <button onClick={() => navigate("/chat/"+ user._id)} className=' bg-[#001529] text-center rounded min-w-14 sm:min-w-20'>{messagecount && messagecount > 0 && <span className='text-white bg-green-900 rounded-full p-1'>{messagecount}</span>} Chat</button>
       <button onClick={() => navigate("/history")} className=' bg-[#001529] text-center rounded min-w-14 sm:min-w-20'>History</button>
    
       </div>

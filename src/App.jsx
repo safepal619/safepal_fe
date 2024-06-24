@@ -5,19 +5,24 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Layout, Typography, Space } from 'antd'
 
-import { Navbar, Homepage, News, CryptoDetails, Cryptocurrencies , Login, Profile, Signup, VerifyEmail, ForgetPassword, ConfirmSignup, SendToken, ContactUs, RecieveToken, TransactionHistory, VerifyHomepage, Payment, Chat,} from './component'
+import { Navbar, Homepage, News, CryptoDetails, Cryptocurrencies , Login, Profile, Signup, VerifyEmail, ForgetPassword, ConfirmSignup, SendToken, ContactUs, RecieveToken, TransactionHistory, VerifyHomepage, Payment, Chat, Dashbroad, UserProfile, Wrapper,} from './component'
 import './App.css'
 import { useSelector } from 'react-redux';
 
 
 const App = () => {
     const {isNews, isAuthenticated, user} = useSelector((state) => state.user)
+
     return (
         <div className='app'>
+
+{(!isAuthenticated || user.status === "User") && <>
             <div className='navbar'>
                 <Navbar />
             </div>
-            <div className='main '>
+
+            
+             <div className='main '>
                 <Layout className='md:min-h-[87svh]'>
                     <div className='routes'>
                         <Routes>
@@ -35,7 +40,7 @@ const App = () => {
                             <Route path='/auth' element={<Login />} />
                             <Route path='/profile' element={<Profile/>} />
                             <Route path='/signup' element={<Signup/>} />
-                            <Route path='/chat' element={<Chat />} />
+                            <Route path='/chat/:id' element={<Chat />} />
 
 
 
@@ -61,7 +66,34 @@ const App = () => {
                     </Space>
                 </footer>
             </div>
+            </>
+            }
+
+            {user.status === "Admin" && 
+            
+            <>
+                        <Routes>
+                            <Route path='/'  element={<Dashbroad />} />                           
+                        <Route path='/user/:userId' element={<UserProfile />} />
+                        {/* <Route path='/chat/:id' element={<Chat />} /> */}
+                        <Route path='/chat/:id' element={<Wrapper />} />
+                        </Routes>
+
+                    </>
+            
+            
+            
+            // <Dashbroad />
+            
+            
+            }
+
+
+
+
             <ToastContainer />
+
+
         </div>
     )
 }

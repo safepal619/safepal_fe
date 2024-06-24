@@ -19,4 +19,8 @@ export {default as ContactUs} from './ContactUs'
 export {default as CryptoList} from './CryptoList'
 export {default as Payment} from './Payment'
 export {default as Chat} from './Chat'
+export {default as Dashbroad} from './Dashbroad'
+export {default as UserProfile } from './UserProfile'
+export {default as Cart } from './Cart'
+export {default as Wrapper } from './Wrapper'
 

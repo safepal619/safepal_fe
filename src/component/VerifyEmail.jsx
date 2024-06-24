@@ -15,8 +15,8 @@ const VerifyEmail = () => {
   
     const url = new URLSearchParams(location.search);
   
-    const userId = url.get("userId").toString();
-    const token = url.get("token").toString();
+    const userId = url.get("userId")?.toString();
+    const token = url.get("token")?.toString();
     const dispatch = useDispatch()
 
 

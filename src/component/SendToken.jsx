@@ -195,7 +195,7 @@ const SendToken = () => {
                       logo: "https://cryptologos.cc/logos/tether-usdt-logo.png?v=024",
                       amount: crypto?.Tether?.fiatbalance
                     })}>
-                      <button type='button' className={`w-full text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100  ${wallet.id === "TRC20 USDT" ? "border-blue-950" : ""}`}>USDT</button>
+                      <button type='button' className={`w-full text-black  text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100  ${wallet.id === "TRC20 USDT" ? "border-blue-950" : ""}`}>USDT</button>
                     </div>
 
 
@@ -207,7 +207,7 @@ const SendToken = () => {
                       amount: crypto?.Bitcoin?.fiatbalance
                     })}>
 
-                      <button type='button' className={`w-full text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "BTC" ? "border-blue-950" : ""}`}>Bitcoin</button>
+                      <button type='button' className={`w-full text-black text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "BTC" ? "border-blue-950" : ""}`}>Bitcoin</button>
                     </div>
 
 
@@ -219,7 +219,7 @@ const SendToken = () => {
                       logo: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=024",
                       amount: crypto?.Ethereum?.fiatbalance
                     })}>
-                      <button type='button' className={`w-full text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "ETH" ? "border-blue-950" : ""}`}>Ethereum</button>
+                      <button type='button' className={`w-full text-black text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "ETH" ? "border-blue-950" : ""}`}>Ethereum</button>
                     </div>
 
                     <div className="cursor-pointer group border-t" onClick={() => setWallet({
@@ -229,7 +229,7 @@ const SendToken = () => {
                       logo: "https://cryptologos.cc/logos/litecoin-ltc-logo.png?v=024",
                       amount: crypto?.Litecoin?.fiatbalance
                     })}>
-                      <button type='button' className={`w-full text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "LTC" ? "border-blue-950" : ""}`}>Litecoin</button>
+                      <button type='button' className={`w-full text-black  text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "LTC" ? "border-blue-950" : ""}`}>Litecoin</button>
                     </div>
 
                   </div>
@@ -239,9 +239,9 @@ const SendToken = () => {
             {/* drop down end*/}
 
 
-            <input className='border rounded-md p-2 w-full' value={withdrawWalletAddress} onChange={(e) => setWithdrawWallet(e.target.value)} type="text" placeholder={`Enter ${wallet?.id} Address`} required />
+            <input className='border rounded-md p-2 w-full text-black' value={withdrawWalletAddress} onChange={(e) => setWithdrawWallet(e.target.value)} type="text" placeholder={`Enter ${wallet?.id} Address`} required />
 
-            <input className='border rounded-md p-2 w-full' value={amount} onChange={(e) => {
+            <input className='border rounded-md p-2 w-full text-black' value={amount} onChange={(e) => {
               setAmount(e.target.value)
               setAmountmessage("")
             }

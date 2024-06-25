@@ -40,9 +40,9 @@ const Dashbroad = () => {
     (accumulator, item) => {
       if (item.status == "Success") {
         if (!accumulator.isDeposit) {
-          accumulator.deposit = item.amount;
+          accumulator.deposit += item.amount;
         } else {
-          accumulator.withdraw = item.amount;
+          accumulator.withdraw += item.amount;
         }
       }
       return accumulator;
@@ -256,7 +256,7 @@ const Dashbroad = () => {
 
                 {notificationOpen && (
                   <div
-                    className="absolute right-0 z-50 mt-2 overflow-hidden bg-white rounded-lg shadow-xl w-80 border"
+                    className="absolute right-0 z-50 mt-2 overflow-scroll max-h-screen bg-white rounded-lg shadow-xl w-80 border"
                     style={{ width: "20rem", display: "block" }}
                   >
 

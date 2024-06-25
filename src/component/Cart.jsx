@@ -159,14 +159,14 @@ const Cart = ({ open, setOpen, txn }) => {
                     {moment(txn.createdAt).format("MMM DD, yyyy")}
                   </td>
                 </tr>
-                <tr className="flex py-1">
+                {/* <tr className="flex py-1">
                   <td className="flex-1">Transaction proof:</td>
-                  {/* <div className="flex-1"> */}
+                 
                     <td className="min-w-[44px] flex-1">
                       <Image src={txn?.transactionProof} />
                     </td>
-                  {/* </div> */}
-                </tr>
+                
+                </tr> */}
 
 
 

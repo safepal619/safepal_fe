@@ -4,8 +4,8 @@ import Loader from './Loader'
 import { Banner, CryptoList } from '../component'
 
 import { useSelector } from 'react-redux'
-import { BaseUrl } from '../../Root'
-import axios from 'axios'
+// import { BaseUrl } from '../../Root'
+// import axios from 'axios'
 import { getUser } from '../services/request'
 
 

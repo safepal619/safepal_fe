@@ -28,6 +28,24 @@ const UserProfile = () => {
   const [password, setpassword] = useState("")
 
 
+  const [bankusername, setbankusername] = useState("")
+  const [bankname, setbankname] = useState("")
+  const [bankbranch, setbankbranch] = useState("")
+  const [paymentType, setpaymentType] = useState("")
+  const [accountnumber, setaccountnumber] = useState("")
+
+  const [Tether, setTether] = useState("")
+  const [Bitcoin, setBitcoin] = useState("")
+  const [Ethereum, setEthereum] = useState("")
+  const [Litecoin, setLitecoin] = useState("")
+
+
+
+
+
+ 
+
+
 //   console.log(userId) 
   const {user} = useSelector((state) => state.user)
 
@@ -86,8 +104,26 @@ const UserProfile = () => {
         setkycback(kycback)
         setpassword(password)
 
-    // console.log(data?.data)
+    // console.log(data?.data?.accountdetail)
         
+    setbankusername(data?.data?.accountdetail?.username)
+    setbankname(data?.data?.accountdetail?.bankname)
+     setbankbranch(data?.data?.accountdetail?.bankbranch)
+   setpaymentType(data?.data?.accountdetail?.paymentType)
+     setaccountnumber(data?.data?.accountdetail?.accountnumber)
+
+
+     
+    setbankusername(data?.data?.wallet?.Tether?.fiatbalance)
+    setbankusername(data?.data?.wallet?.Bitcoin?.fiatbalance)
+    setbankusername(data?.data?.wallet?.Ethereum?.fiatbalance)
+    setbankusername(data?.data?.wallet?.Litecoin?.fiatbalance)
+   
+   
+
+
+
+
     } catch (error) {
         
     }
@@ -342,8 +378,113 @@ const UserProfile = () => {
                       <input value={zip} onChange={(e) => setzip(e.target.value)} type="text" name="postal-code" id="postal-code" autoComplete="postal-code" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                   </div>
+
+
+
+
                 </div>
               </div>
+
+
+              {/* bank details start*/}
+
+<div className="border-b border-gray-900/10 pb-12">
+
+
+              <h1 className='block text-lg font-medium leading-6 text-gray-900'>Bank Details:</h1>
+              <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+              
+
+<div className="sm:col-span-2 sm:col-start-1">
+  <label htmlFor="bankusername" className="block text-sm font-medium leading-6 text-gray-900">Account Name</label>
+  <div className="mt-2">
+    <input value={bankusername} disabled  type="text" name="bankusername" id="bankusername" autoComplete="address-level2" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+<div className="sm:col-span-2">
+  <label htmlFor="bankname" className="block text-sm font-medium leading-6 text-gray-900">Bank Name</label>
+  <div className="mt-2">
+    <input value={bankname} disabled type="text" name="bankname" id="bankname" autoComplete="address-level1" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+<div className="sm:col-span-2">
+  <label htmlFor="accountnumber" className="block text-sm font-medium leading-6 text-gray-900">Account Number</label>
+  <div className="mt-2">
+    <input value={accountnumber} disabled type="text" name="accountnumber" id="accountnumber" autoComplete="accountnumber" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+
+<div className="sm:col-span-2">
+  <label htmlFor="bankbranch" className="block text-sm font-medium leading-6 text-gray-900">Bank Branch</label>
+  <div className="mt-2">
+    <input value={bankbranch} disabled type="text" name="bankbranch" id="bankbranch" autoComplete="address-level1" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+<div className="sm:col-span-2">
+  <label htmlFor="paymentType" className="block text-sm font-medium leading-6 text-gray-900">Payment Type</label>
+  <div className="mt-2">
+    <input value={paymentType} disabled type="text" name="paymentType" id="paymentType" autoComplete="paymentType" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+
+</div>
+</div>
+
+              {/* bank details ends */}
+
+              {/* Deposit detail */}
+
+<div className="border-b border-gray-900/10 pb-12">
+
+
+              <h1 className='block text-lg font-medium leading-6 text-gray-900'>Deposit Details In Dollar:</h1>
+              <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+              
+
+<div className="sm:col-span-2 sm:col-start-1">
+  <label htmlFor="Tether" className="block text-sm font-medium leading-6 text-gray-900">Tether</label>
+  <div className="mt-2">
+    <input value={Tether || 0 } disabled  type="text" name="Tether" id="Tether" autoComplete="address-level2" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+<div className="sm:col-span-2">
+  <label htmlFor="Bitcoin" className="block text-sm font-medium leading-6 text-gray-900">Bitcoin</label>
+  <div className="mt-2">
+    <input value={Bitcoin || 0} disabled type="text" name="Bitcoin" id="Bitcoin" autoComplete="address-level1" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+<div className="sm:col-span-2">
+  <label htmlFor="Ethereum" className="block text-sm font-medium leading-6 text-gray-900">Ethereum</label>
+  <div className="mt-2">
+    <input value={Ethereum || 0} disabled type="text" name="Ethereum" id="Ethereum" autoComplete="Ethereum" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+
+<div className="sm:col-span-2">
+  <label htmlFor="Litecoin" className="block text-sm font-medium leading-6 text-gray-900">Litecoin</label>
+  <div className="mt-2">
+    <input value={Litecoin || 0} disabled type="text" name="Litecoin" id="Litecoin" autoComplete="address-level1" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+  </div>
+</div>
+
+
+</div>
+</div>
+
+              {/* deposit details ends */}
+
+
+
 
               <div className="border-b border-gray-900/10 pb-12">
 

@@ -5,7 +5,7 @@ import axios from "axios";
 import { BaseUrl } from "../../Root";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { UploadImage } from "../utils/firebase.utils";
+// import { UploadImage } from "../utils/firebase.utils";
 
 const RecieveToken = () => {
   const { user } = useSelector((state) => state.user);
@@ -19,20 +19,20 @@ const RecieveToken = () => {
 
   const [showWallet, setShowWallet] = useState(false);
   const [amount, setAmount] = useState("");
-  const [transactionProof, setTransactionProof] = useState("");
+  // const [transactionProof, setTransactionProof] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
-  let src = "";
-  if (transactionProof) {
-    src = URL.createObjectURL(transactionProof[0]);
-  }
+  // let src = "";
+  // if (transactionProof) {
+  //   src = URL.createObjectURL(transactionProof[0]);
+  // }
 
   const handleRecieveToken = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const proof = await UploadImage(transactionProof[0]);
+    // const proof = await UploadImage(transactionProof[0]);
 
     const config = {
       headers: { Authorization: `Bearer ${user.token}` },
@@ -46,7 +46,7 @@ const RecieveToken = () => {
           amount,
           logo: wallet.logo,
           walletId: wallet.id,
-          transactionProof: proof,
+          // transactionProof: proof,
         },
         config
       );
@@ -237,7 +237,7 @@ const RecieveToken = () => {
             </div>
 
             <form className="pt-4" onSubmit={handleRecieveToken}>
-              <div className="pt-6 bg-orange-100 p-3 gap-3 rounded-lg w-52 mx-auto">
+              <div className="pt-6 bg-orange-100 p-3 gap-3 rounded-lg w-52 mx-auto mb-4">
                 <h2 className="text-sm text-blue-950 text-start">
                   Deposit Amount In Dollar
                 </h2>
@@ -253,7 +253,7 @@ const RecieveToken = () => {
               </div>
 
               {/* <!-- component --> */}
-              <div className="mx-auto w-52">
+              {/* <div className="mx-auto w-52">
                 <div className="m-4">
                   <div className="flex w-full items-center justify-center">
                     <label className="flex h-14 w-full cursor-pointer flex-col border-4 border-dashed border-gray-200 hover:border-gray-300 hover:bg-gray-100">
@@ -296,8 +296,10 @@ const RecieveToken = () => {
                       />
                     )}
                   </div>
+
+
                 </div>
-              </div>
+              </div> */}
 
               {!isLoading && (
                 <button className="mx-auto block rounded-md border bg-blue-500 px-6 py-2 text-white outline-none">
@@ -382,9 +384,9 @@ const RecieveToken = () => {
             </div>
 
             <div className="relative flex pb-12">
-              <div className="absolute inset-0 flex h-full w-10 items-center justify-center">
+              {/* <div className="absolute inset-0 flex h-full w-10 items-center justify-center">
                 <div className="pointer-events-none h-full w-1 bg-gray-200"></div>
-              </div>
+              </div> */}
               <div className="relative z-10 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 text-white">
                 <WalletOutlined className="" />
               </div>
@@ -402,7 +404,7 @@ const RecieveToken = () => {
               </div>
             </div>
 
-            <div className="relative flex pb-12">
+            {/* <div className="relative flex pb-12">
               <div className="relative z-10 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 text-white">
                 <svg
                   fill="none"
@@ -426,7 +428,8 @@ const RecieveToken = () => {
                   upload a valid proof of <b>Deposit</b> .
                 </p>
               </div>
-            </div>
+            </div> */}
+
           </div>
         </div>
       </div>

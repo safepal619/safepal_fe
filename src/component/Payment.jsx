@@ -4,6 +4,8 @@ import { BaseUrl } from "../../Root";
 import axios from "axios";
 import { Alert, Button } from 'antd';
 import { useSelector } from "react-redux";
+import Bankdetail from "./Bankdetail";
+import { getUser } from "../services/request";
 
 const Payment = () => {
    const [username, setUserName] = useState("")
@@ -14,9 +16,14 @@ const Payment = () => {
 
    const {user} = useSelector((state) => state.user)
 
+ 
+  const {data , isLoading: isLoadingData} = getUser({token: user.token , userId: user._id})
+
    const [isSuccess, setIsSuccess] = useState(false)
    const [isError, setIsError] = useState(false)
    const [isLoading, setIsLoading] = useState(true)
+
+   const [editPayment, setEditPayment] = useState(true)
 
 
    const config = {
@@ -34,11 +41,17 @@ const Payment = () => {
         username,
         bankname,
         bankbranch,
-        paymentType
+        paymentType,
+        accountnumber
        }, config)
     
       setIsError(false)
       setIsSuccess(true)
+
+      setTimeout(() => {
+        setEditPayment(false)
+        
+      }, 1000);
       
   } catch (error) {
     setIsSuccess(false)
@@ -69,28 +82,62 @@ const Payment = () => {
       
 
     try {
-       const res = await axios.get(`${BaseUrl}/user/accountInformation/${user._id}`, config)
+      // console.log("userdata: ",data?.data?.accountdetail)
 
-        const {bankbranch,bankname, paymentType, username} = res?.data?.data?.accountdetail
+        const {bankbranch,bankname, paymentType, username, accountnumber} = data?.data?.accountdetail
 
         setUserName(username)
         setpaymentType(paymentType)
         setbankname(bankname)
         setbankbranch(bankbranch)
+        setaccountnumber(accountnumber)
     setIsLoading(false)
+
+    if(bankname || accountnumber || username) {
+      setEditPayment(false)
+    }
         
     } catch (error) {
         
     }
     })()
-  },[])
+  },[data?.data?.accountdetail])
+
+
+
+
+  if(isLoadingData) {
+  return <div className="flex min-h-screen items-center justify-center flex-1">
+  <div className="w-1/3">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg animate-pulse">
+      <div className="h-48 bg-gray-300"></div>
+      <div className="px-6 py-4">
+          <div className="h-6 bg-gray-300 mb-2"></div>
+          <div className="h-4 bg-gray-300 w-2/3"></div>
+      </div>
+      <div className="px-6 pt-4 pb-2">
+          <div className="h-4 bg-gray-300 w-1/4 mb-2"></div>
+          <div className="h-4 bg-gray-300 w-1/2"></div>
+      </div>
+      </div>
+  </div>
+</div>
+
+  }
+
+
 
 
 
 
   return (
    <>
-   <div className="flex items-center min-h-screen bg-gray-50 ">
+
+
+   {!editPayment && <Bankdetail  bankname={bankname} username={username} accountnumber={accountnumber} onClick={() => setEditPayment(true)} />}
+
+
+   {editPayment && <div className="flex items-center min-h-screen bg-gray-50 ">
        <div className="container mx-auto">
          <div className="max-w-md mx-auto my-10 bg-gray-800 p-5 rounded-md shadow-sm">
 
@@ -242,7 +289,7 @@ const Payment = () => {
                  <input
                      value={accountnumber}
                      onChange={(e) => setaccountnumber(e.target.value)}
-                   type="number"
+                   type="text"
                    name="account_name"
                    id="account_name"
                    placeholder="Please Enter Account Number"
@@ -293,7 +340,10 @@ const Payment = () => {
        </div>
 
 
-     </div>
+     </div>}
+
+
+     
    </>
   );
 };

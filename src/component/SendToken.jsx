@@ -188,48 +188,63 @@ const SendToken = () => {
                   <input type="checkbox" name="show_more" id="show_moree" className="hidden peer" checked={showWallet} onChange={() => setShowWallet(v => !v)} />
                   <div className="absolute z-[100] rounded shadow bg-white overflow-hidden hidden peer-checked:flex flex-col w-full mt-1 border border-gray-200">
 
-                    <div className="cursor-pointer group" onClick={() => setWallet({
+                    <div className="cursor-pointer group" onClick={() => { 
+                      setWallet({
                       name: "Tether",
                       id: "TRC20 USDT",
                       address: "TTy84MGCuq5kKxqGhQeCPBg2nvxpK4AfgQ",
                       logo: "https://cryptologos.cc/logos/tether-usdt-logo.png?v=024",
                       amount: crypto?.Tether?.fiatbalance
-                    })}>
-                      <button type='button' className={`w-full text-black  text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100  ${wallet.id === "TRC20 USDT" ? "border-blue-950" : ""}`}>USDT</button>
+                    })
+                  
+                    setShowWallet(false)
+                  }
+                    }>
+                      <button type='button' className={`w-full text-black text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100  ${wallet.id === "TRC20 USDT" ? "border-blue-950" : "border-white"}`}>USDT</button>
                     </div>
 
 
-                    <div className="cursor-pointer group border-t" onClick={() => setWallet({
+                    <div className="cursor-pointer group border-t" onClick={() => {
+                       setWallet({
                       name: "Bitcoin",
                       id: "BTC",
                       address: "bc1qlwutcrm8gts9ul7977p8gd8efesfq022rl7vt4",
                       logo: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=024",
                       amount: crypto?.Bitcoin?.fiatbalance
-                    })}>
+                    })
+                    setShowWallet(false)}
+                    }>
 
-                      <button type='button' className={`w-full text-black text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "BTC" ? "border-blue-950" : ""}`}>Bitcoin</button>
+                      <button type='button' className={`w-full text-black text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100  ${wallet.id === "BTC" ? "border-blue-950" : "border-white"}`}>Bitcoin</button>
                     </div>
 
 
 
-                    <div className="cursor-pointer group border-t" onClick={() => setWallet({
+                    <div className="cursor-pointer group border-t" onClick={() => {
+                      setWallet({
                       name: "Ethereum",
                       id: "ETH",
                       address: "0x11CbAb83E5f90BC682fE2b3FFe73eA56C8ED2B58",
                       logo: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=024",
                       amount: crypto?.Ethereum?.fiatbalance
-                    })}>
-                      <button type='button' className={`w-full text-black text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "ETH" ? "border-blue-950" : ""}`}>Ethereum</button>
+                    })
+                    setShowWallet(false)}
+                    
+                    }>
+                      <button type='button' className={`w-full text-black text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100  ${wallet.id === "ETH" ? "border-blue-950" : "border-white"}`}>Ethereum</button>
                     </div>
 
-                    <div className="cursor-pointer group border-t" onClick={() => setWallet({
+                    <div className="cursor-pointer group border-t" onClick={() => {
+                      setWallet({
                       name: "Litecoin",
                       id: "LTC",
                       address: "ltc1qlm8hhpa900nh6v62y2gyswlsur763ry9n534a2",
                       logo: "https://cryptologos.cc/logos/litecoin-ltc-logo.png?v=024",
                       amount: crypto?.Litecoin?.fiatbalance
-                    })}>
-                      <button type='button' className={`w-full text-black  text-start block p-2 border-transparent border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "LTC" ? "border-blue-950" : ""}`}>Litecoin</button>
+                    })
+                    setShowWallet(false)}
+                    }>
+                      <button type='button' className={`w-full text-black text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id === "LTC" ? "border-blue-950" : "border-white"}`}>Litecoin</button>
                     </div>
 
                   </div>

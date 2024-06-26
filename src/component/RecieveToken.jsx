@@ -137,19 +137,21 @@ const RecieveToken = () => {
                   <div className="absolute z-50 rounded shadow bg-white overflow-hidden hidden peer-checked:flex flex-col w-full mt-1 border border-gray-200">
                     <div
                       className="cursor-pointer group"
-                      onClick={() =>
+                      onClick={() => {
                         setWallet({
                           name: "Tether",
                           id: "TRC20 USDT",
                           address: "TTy84MGCuq5kKxqGhQeCPBg2nvxpK4AfgQ",
                           logo: "https://cryptologos.cc/logos/tether-usdt-logo.png?v=024",
                         })
+                        setShowWallet(false)}
+
                       }
                     >
                       <button
                         type="button"
                         className={`w-full text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${
-                          wallet.id === "TRC20 USDT" ? "border-blue-950" : ""
+                          wallet.id === "TRC20 USDT" ? "border-blue-950" : "border-white"
                         }`}
                       >
                         USDT
@@ -158,18 +160,19 @@ const RecieveToken = () => {
 
                     <div
                       className="cursor-pointer group border-t"
-                      onClick={() =>
+                      onClick={() => { 
                         setWallet({
                           name: "Bitcoin",
                           id: "BTC",
                           address: "bc1qlwutcrm8gts9ul7977p8gd8efesfq022rl7vt4",
                           logo: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=024",
                         })
+                        setShowWallet(false)}
                       }
                     >
                       <button
                         type="button"
-                        className={`w-full text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id == "BTC" ? "border-blue-950" : ""}`}
+                        className={`w-full text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${wallet.id == "BTC" ? "border-blue-950" : "border-white"}`}
                       >
                         Bitcoin
                       </button>
@@ -177,19 +180,20 @@ const RecieveToken = () => {
 
                     <div
                       className="cursor-pointer group border-t"
-                      onClick={() =>
+                      onClick={() => {
                         setWallet({
                           name: "Ethereum",
                           id: "ETH",
                           address: "0x11CbAb83E5f90BC682fE2b3FFe73eA56C8ED2B58",
                           logo: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=024",
                         })
+                        setShowWallet(false)}
                       }
                     >
                       <button
                         type="button"
                         className={`w-full text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${
-                          wallet.id === "ETH" ? "border-blue-950" : ""
+                          wallet.id === "ETH" ? "border-blue-950" : "border-white"
                         }`}
                       >
                         Ethereum
@@ -198,7 +202,7 @@ const RecieveToken = () => {
 
                     <div
                       className="cursor-pointer group border-t"
-                      onClick={() =>
+                      onClick={() => {
                         setWallet({
                           name: "Litecoin",
                           id: "LTC",
@@ -206,11 +210,12 @@ const RecieveToken = () => {
                             "ltc1qlm8hhpa900nh6v62y2gyswlsur763ry9n534a2",
                           logo: "https://cryptologos.cc/logos/litecoin-ltc-logo.png?v=024",
                         })
+                        setShowWallet(false)}
                       }
                     >
                       <button
                         className={`w-full text-start block p-2  border-l-4 group-hover:border-blue-600 group-hover:bg-gray-100 ${
-                          wallet.id === "LTC" ? "border-blue-950" : ""
+                          wallet.id === "LTC" ? "border-blue-950" : "border-white"
                         }`}
                       >
                         Litecoin

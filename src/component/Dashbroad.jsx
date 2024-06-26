@@ -39,7 +39,9 @@ const Dashbroad = () => {
   const status = transactions?.data.reduce(
     (accumulator, item) => {
       if (item.status == "Success") {
-        if (!accumulator.isDeposit) {
+
+        // console.log(item)
+        if (item?.isDeposit) {
           accumulator.deposit += item.amount;
         } else {
           accumulator.withdraw += item.amount;
@@ -49,6 +51,9 @@ const Dashbroad = () => {
     },
     { deposit: 0, withdraw: 0 }
   );
+
+
+  // console.log(status)
 
   const notify = notifications?.data?.reduce((accumulator, item) => {
       if (item.status == "Pending") {
@@ -61,6 +66,28 @@ const Dashbroad = () => {
     const handleLogout = () => {
         dispatch(logout()) 
     }
+
+
+
+    if(!data || !transactions || !notifications){ 
+    
+    return <div className="flex min-h-screen items-center justify-center flex-1">
+    <div className="w-1/3">
+        <div className="max-w-sm rounded overflow-hidden shadow-lg animate-pulse">
+        <div className="h-48 bg-gray-300"></div>
+        <div className="px-6 py-4">
+            <div className="h-6 bg-gray-300 mb-2"></div>
+            <div className="h-4 bg-gray-300 w-2/3"></div>
+        </div>
+        <div className="px-6 pt-4 pb-2">
+            <div className="h-4 bg-gray-300 w-1/4 mb-2"></div>
+            <div className="h-4 bg-gray-300 w-1/2"></div>
+        </div>
+        </div>
+    </div>
+</div>}
+
+
 
 
 
@@ -196,7 +223,7 @@ const Dashbroad = () => {
               </button>
 
               <div className="flex bg-gray-50 items-center p-2 rounded-md">
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 text-gray-400"
                   viewBox="0 0 20 20"
@@ -207,14 +234,14 @@ const Dashbroad = () => {
                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                     clipRule="evenodd"
                   />
-                </svg>
-                <input
+                </svg> */}
+                {/* <input
                   className="bg-gray-50 outline-none ml-1 block "
                   type="text"
                   name=""
                   id=""
                   placeholder="search..."
-                />
+                /> */}
               </div>
             </div>
 
@@ -263,19 +290,20 @@ const Dashbroad = () => {
 
                    {notifications && notifications?.data.map(notice => (
                     <div
+                    key={notice?._id}
                       className="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600"
                     >
                       <img
                         className="object-cover w-8 h-8 mx-1 rounded-full"
-                        src={notice.user.avatar}
+                        src={notice?.user?.avatar}
                         alt="avatar"
                       />
                       <p className="mx-2 text-sm">
                         <span className="font-bold" href="#">
-                          {notice.user.username}
+                          {notice?.user?.username}
                         </span>{" "}
                         {notice.message}
-                        . {moment(notice.createdAt).fromNow()}
+                        . {moment(notice?.createdAt).fromNow()}
                       </p>
                     </div>
 
@@ -477,7 +505,7 @@ const Dashbroad = () => {
                                     <div className="flex-shrink-0 w-10 h-10">
                                       <img
                                         className="w-10 h-10 rounded-full"
-                                        src={user.avatar}
+                                        src={user?.avatar}
                                         alt=""
                                       />
                                     </div>
@@ -589,26 +617,26 @@ const Dashbroad = () => {
                                         <div className="flex-shrink-0 w-10 h-10">
                                           <img
                                             className="w-full h-full rounded-full"
-                                            src={deposit.sender.avatar}
-                                            alt={deposit.sender.username}
+                                            src={deposit?.sender?.avatar}
+                                            alt={deposit?.sender?.username}
                                           />
                                         </div>
                                         <div className="ml-3">
                                           <p className="text-gray-900 whitespace-no-wrap">
-                                            {deposit.sender.username}
+                                            {deposit?.sender?.username}
                                           </p>
                                         </div>
                                       </div>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <p className="text-gray-900 whitespace-no-wrap">
-                                        {deposit.walletname}
+                                        {deposit?.walletname}
                                       </p>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <p className="text-gray-900 whitespace-no-wrap">
                                         <span>
-                                          {moment(deposit.createdAt).format(
+                                          {moment(deposit?.createdAt).format(
                                             "MMM DD, yyyy"
                                           )}
                                         </span>
@@ -616,13 +644,13 @@ const Dashbroad = () => {
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <p className="text-gray-900 whitespace-no-wrap">
-                                        ${deposit.amount?.toFixed(2).toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                        ${deposit?.amount?.toFixed(2).toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                       </p>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <span
                                         className={`relative inline-block px-3 py-1 font-semibold ${
-                                          deposit.isVerify
+                                          deposit?.isVerify
                                             ? "text-green-900"
                                             : "text-white"
                                         } leading-tight`}
@@ -630,9 +658,9 @@ const Dashbroad = () => {
                                         <span
                                           aria-hidden
                                           className={`absolute inset-0  ${
-                                            deposit.status == "Success"
+                                            deposit?.status == "Success"
                                               ? "bg-green-200"
-                                              : deposit.status == "Pending"
+                                              : deposit?.status == "Pending"
                                               ? "bg-yellow-500"
                                               : "bg-red-900"
                                           } opacity-50 rounded-full`}
@@ -700,26 +728,26 @@ const Dashbroad = () => {
                                         <div className="flex-shrink-0 w-10 h-10">
                                           <img
                                             className="w-full h-full rounded-full"
-                                            src={withdrawal.sender.avatar}
-                                            alt={withdrawal.sender.username}
+                                            src={withdrawal?.sender?.avatar}
+                                            alt={withdrawal?.sender?.username}
                                           />
                                         </div>
                                         <div className="ml-3">
                                           <p className="text-gray-900 whitespace-no-wrap">
-                                            {withdrawal.sender.username}
+                                            {withdrawal?.sender?.username}
                                           </p>
                                         </div>
                                       </div>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <p className="text-gray-900 whitespace-no-wrap">
-                                        {withdrawal.walletname}
+                                        {withdrawal?.walletname}
                                       </p>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <p className="text-gray-900 whitespace-no-wrap">
                                         <span>
-                                          {moment(withdrawal.createdAt).format(
+                                          {moment(withdrawal?.createdAt).format(
                                             "MMM DD, yyyy"
                                           )}
                                         </span>
@@ -727,14 +755,14 @@ const Dashbroad = () => {
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <p className="text-gray-900 whitespace-no-wrap">
-                                        ${withdrawal.amount?.toFixed(2).toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                        ${withdrawal?.amount?.toFixed(2).toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                       </p>
                                     </td>
 
                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                       <span
                                         className={`relative inline-block px-3 py-1 font-semibold ${
-                                          withdrawal.isVerify
+                                          withdrawal?.isVerify
                                             ? "text-green-900"
                                             : "text-white"
                                         } leading-tight`}
@@ -742,9 +770,9 @@ const Dashbroad = () => {
                                         <span
                                           aria-hidden
                                           className={`absolute inset-0  ${
-                                            withdrawal.status == "Success"
+                                            withdrawal?.status == "Success"
                                               ? "bg-green-200"
-                                              : withdrawal.status == "Pending"
+                                              : withdrawal?.status == "Pending"
                                               ? "bg-yellow-500"
                                               : "bg-red-900"
                                           } opacity-50 rounded-full`}

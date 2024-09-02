@@ -82,16 +82,16 @@ export const getNotifications = () => useQuery({ queryKey: ['notifications'], qu
 
 
 const queryChat = async({ queryKey }) => {
-  const [_key, { from, to}] = queryKey
+  const [_key, { from, to, status}] = queryKey
 
   // let config = {
   //       headers: { Authorization: `Bearer ${token}` }
   //   };
-const res = await instance.get("/message/" + from + "/" + to)
+const res = await instance.get("/message/" + from + "/" + to + "/" + status)
 return res.data
 }
 
-export const getChat = ({from, to}) => useQuery({ queryKey: ['chat', {from, to}], queryFn: queryChat })
+export const getChat = ({from, to, status}) => useQuery({ queryKey: ['chat', {from, to, status}], queryFn: queryChat })
 
 
 export const verifyNotificationsmutation = () => useMutation({
@@ -113,8 +113,8 @@ export const verifyTransationmutation = () => useMutation({
 })
 
 export const setChatMutation = () => useMutation({
-  mutationFn: ({from, to, message}) => {
-    return instance.post('/message', {from, to, message})
+  mutationFn: ({from, to, message,status}) => {
+    return instance.post('/message', {from, to, message, status})
   },
 })
 

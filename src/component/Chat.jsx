@@ -27,19 +27,20 @@ const Chat = () => {
 //   const socket = io(AdminBaseUrl)
 //   socket.emit("add-user", user._id)
 
-  queryClient.invalidateQueries({ queryKey: ['user'] })
+
   
 
   const {data: userInfo} = getUser({token:user.token, userId: user.status === "User" ?  "664c99e8421f68f32ee5528c" : id?.toString()})
-  const {data} = getChat({from: user._id, to: user.status === "User" ?  "664c99e8421f68f32ee5528c" : id?.toString()})
+
+  const {data} = getChat({from: user._id, to: user.status === "User" ?  "664c99e8421f68f32ee5528c" : id?.toString(), status:user.status})
   const chat = setChatMutation()
 
 
 
-  useEffect(() => {
-    const el = document.getElementById('messages')
-	el.scrollTop = el.scrollHeight
-  }, [])
+//   useEffect(() => {
+//     const el = document.getElementById('messages')
+// 	el.scrollTop = el.scrollHeight
+//   }, [])
 
 
 
@@ -52,16 +53,16 @@ const Chat = () => {
    try {
       // socket.emit("send-message", {from: user._id, to: user.status === "User" ?  "664c99e8421f68f32ee5528c" : id.toString(), message})
       
-      const res = await chat.mutateAsync({from: user._id, to: user.status === "User" ?  "664c99e8421f68f32ee5528c" : id.toString(), message})
+      const res = await chat.mutateAsync({from: user._id, to: user.status === "User" ?  "664c99e8421f68f32ee5528c" : id.toString(), message, status:user.status})
      
       if(res.data){
          let msgs = [...messages];
          msgs.unshift({fromSelf: true, message, avatar: user.avatar, _id: Math.random()})
-         
          setMessages(msgs)
+         setMessage("")
+         queryClient.invalidateQueries({ queryKey: ['user'] })
       
          // scrollRef.current.scrollIntoView({ behavior: "smooth",  block: "end" });
-         setMessage("")
 
       }
 
@@ -75,6 +76,8 @@ const Chat = () => {
 
 
   useEffect(() => {
+ 
+   queryClient.invalidateQueries({ queryKey: ['users'] })
 setMessages(data?.data)
   }, [data?.data])
 
@@ -108,7 +111,6 @@ setMessages(data?.data)
             <div className="text-2xl mt-1 flex items-center">
                <span className="text-gray-700 mr-3">{userInfo?.data?.username}</span>
             </div>
-            {/* <span className="text-lg text-gray-600">Junior Developer</span> */}
          </div>
       </div>
    </div>}

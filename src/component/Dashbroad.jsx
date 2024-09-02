@@ -13,6 +13,7 @@ const Dashbroad = () => {
   const [notificationOpen, setNotificationOpen] = useState(false);
 //   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+
   const [selected, setSelected] = useState("Users");
 
   const navigate = useNavigate();
@@ -498,7 +499,8 @@ const Dashbroad = () => {
 
                         <tbody className="bg-white">
                           {data &&
-                            data?.data.map((user) => (
+                          data?.data.filter(user => user.email !== "safepal619@gmail.com")
+                            .map((user) => (
                               <tr key={user._id}>
                                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                   <div className="flex items-center">

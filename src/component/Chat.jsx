@@ -46,8 +46,8 @@ const Chat = () => {
 
   const handleSubmit = async() => {
 
-   if(!message) return
-   if(loading) return
+   // if(!message) return
+   // if(loading) return
    setLoading(true)
 
    try {
